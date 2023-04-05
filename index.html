@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        <h1>Call Back</h1>
+        <p id="my"></p>
+        <h1>Asynchronous</h1>
+        <p id="demo1"></p>
+        <h1>Set Intervals</h1>
+        <p id="demo"></p>
+        <h1>Set Time Out</h1>
+        <p id="timeout"></p>
+        <h1>Promises- Replace the callback</h1>
+        <p id="promises"></p>
+        <p id="promises1"></p>
+        <h1>Async</h1>
+        <p id="p"></p>
+
+    </body>
+    <script>
+        //callback
+        function display(x){
+            document.getElementById("my").innerHTML=x
+        }
+
+
+        function tamil(){
+            display("Tamil Nadu")  //passing a function as argument
+        }
+        function english(x){
+            display("Commercial Language")
+        }
+        english();
+        tamil();
+        //async
+        function myDisplayer(something) {
+            document.getElementById("demo1").innerHTML = something;
+          }
+          
+          function myCalculator(num1, num2, myCallback) {
+            let sum = num1 + num2;
+            myCallback(sum);
+          }
+          
+          myCalculator(5, 5, myDisplayer);
+
+        //setInterval
+        setInterval(myf,100)
+        function myf(){
+            let d= new Date()
+            document.getElementById("demo").innerHTML= d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+":"+d.getMilliseconds();
+        };
+
+        //settimeout
+        setTimeout(function1,3000)
+        function function1(){
+            document.getElementById("timeout").innerHTML="Hey i am Late by 3s"
+        };
+
+        //Promise
+        function myfun(some){
+            document.getElementById("promises").innerHTML=some;
+        }
+        let myPromise= new Promise(function(myResult,myError){
+        setTimeout(mfu,1)
+        function mfu(){
+            let x=19
+            if(x==0){
+            myResult("Your Data Fetched")
+            console.log("v")
+        }
+        else{
+            myError("404-Not Found")
+        }}});
+        myPromise.then(
+            function(value){ myfun(value);},
+            function(error){ myfun(error);}
+        )
+        
+        function f(some){
+        document.getElementById("promises1").innerHTML=some;
+        }
+        let promises= new Promise(function(result,error){
+        x=2
+        if(x==0){
+            result("equals to zero")
+        }
+        else
+        error("Its error")
+        })
+        promises.then(
+            function(value){ f(value); },
+            function(error){f(error);}
+        )
+
+        function method(some){
+            document.getElementById("p").innerHTML=some;
+            }
+        async function myFunction1(result,error) {
+        x=0
+        if(x==0){
+            return "equals to zero";
+        }
+        else
+            error("Its error")
+        }
+            
+            myFunction1().then(
+            function(result) { method(result) },
+            function(error) { method(error) }
+            );
+    </script>
+</html>
